@@ -7,6 +7,7 @@ async function start() {
 
   const ourTemperature = weatherData.properties.periods[0].temperature
   document.querySelector("#temperature-output").textContent = ourTemperature
+
 }
 
 start()
@@ -14,13 +15,12 @@ start()
 async function petsArea() {
   const petsPromise = await fetch("https://learnwebcode.github.io/bootcamp-pet-data/pets.json")
   const petsData = await petsPromise.json()
-  petsData.forEach((pet) => {
+  petsData.forEach(pet => {
     const clone = template.content.cloneNode(true)
 
     clone.querySelector("h3").textContent = pet.name
     clone.querySelector(".pet-description").textContent = pet.description
     clone.querySelector(".pet-age").textContent = createAgeText(pet.birthYear)
-
     clone.querySelector(".pet-card-photo img").src = pet.photo
     clone.querySelector(".pet-card-photo img").alt = `A ${pet.species} named ${pet.name}.`
 
